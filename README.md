@@ -4,9 +4,6 @@ Async Fcm (Firebase Cloud Messages) library.
 
 Thin wrapper over rust [fcm](https://docs.rs/fcm/0.9.1/fcm/) library. 
 
-## Install
-
-todo
 
 ## Usage
 
