@@ -1,4 +1,4 @@
-import fcm_async
+from fcm_async import FcmClient
 import asyncio
 import os
 import logging
@@ -23,17 +23,19 @@ async def f1():
     return res
 
 # messages
-cls = fcm_async.FcmClient(fcm_key)
-res = loop.run_until_complete(f1())
-assert res == True
+cls = FcmClient(fcm_key)
 
-cls = fcm_async.FcmClient("wrong key")
-res = loop.run_until_complete(f1())
-assert res == False
 
-cls = fcm_async.FcmClient(fcm_key)
+res = loop.run_until_complete(f1())
+assert res == FcmClient.RESULT_SENT
+
+cls = FcmClient("wrong key")
+res = loop.run_until_complete(f1())
+assert res == FcmClient.RESULT_ERROR
+
+cls = FcmClient(fcm_key)
 res = loop.run_until_complete(asyncio.gather(f1(), f1(), f1(), f1()))
-assert res == [True, True, True, True]
+assert res == [FcmClient.RESULT_SENT, FcmClient.RESULT_SENT, FcmClient.RESULT_SENT, FcmClient.RESULT_SENT]
 
 
 #notifications

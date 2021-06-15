@@ -1,5 +1,6 @@
 Cargo.toml
 MANIFEST.in
+README.md
 pyproject.toml
 setup.py
 fcm_async/__init__.py
